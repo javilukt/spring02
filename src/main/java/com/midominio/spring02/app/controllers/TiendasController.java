@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.midominio.spring02.app.models.dao.TiendaDao;
 import com.midominio.spring02.app.models.entities.Tienda;
+import com.midominio.spring02.app.services.TiendasService;
 
 import jakarta.validation.Valid;
 
@@ -18,35 +19,37 @@ import jakarta.validation.Valid;
 @RequestMapping("/tiendas")
 public class TiendasController {
 	
+	
 	@Autowired
-	TiendaDao tiendaDao;
+	TiendasService tiendaService;
+	
 	
 	@GetMapping("/listar")
 	public String listar(Model model) {
 		model.addAttribute("titulo", "Listado de tiendas");
-		model.addAttribute("tiendas", tiendaDao.listar());
+		model.addAttribute("tiendas", tiendaService.listar());
 		return "tiendas/listar";		
 	}
 	
 	@GetMapping("/id/{id}")
 	public String listarPorId(@PathVariable Long id, Model model) {
 		model.addAttribute("titulo", "Listado de tiendas");
-		model.addAttribute("tiendas", tiendaDao.findById(id));
+		model.addAttribute("tiendas", tiendaService.findById(id));
 		return "tiendas/listar";		
 	}
 	
 	@GetMapping("/tipo/{tipo}")
 	public String listarPorTipo(@PathVariable String tipo, Model model) {
 		model.addAttribute("titulo", "Listado de tiendas");
-		model.addAttribute("tiendas", tiendaDao.findByTipo(tipo));
+		model.addAttribute("tiendas", tiendaService.findByTipo(tipo));
 		return "tiendas/listar";		
 	}	
 	
 	@GetMapping("/borrar/{id}")
 	public String listarPor(@PathVariable Long id, Model model) {
 		model.addAttribute("titulo", "Listado de tiendas");
-		tiendaDao.delete(id);
-		model.addAttribute("tiendas", tiendaDao.listar());
+		tiendaService.delete(id);
+		model.addAttribute("tiendas", tiendaService.listar());
 		return "tiendas/listar";		
 	}	
 	@GetMapping("/editar")
@@ -59,7 +62,7 @@ public class TiendasController {
 	@GetMapping("/editar/{id}")
 	public String formGetById(@PathVariable Long id, Model model) {
 		model.addAttribute("titulo", "Edición de una tienda");
-		model.addAttribute("tienda", tiendaDao.findById(id));
+		model.addAttribute("tienda", tiendaService.findById(id));
 		return "tiendas/form";
 	}
 	
@@ -70,7 +73,7 @@ public class TiendasController {
 			model.addAttribute("titulo", "Edición de una tienda");
 			return "tiendas/form"; 
 		}
-		tiendaDao.save(tienda);
+		tiendaService.save(tienda);
 		return "redirect:listar";
 	}
 	

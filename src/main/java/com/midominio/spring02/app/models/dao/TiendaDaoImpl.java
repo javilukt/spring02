@@ -9,7 +9,9 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 
 @Repository
-public class TiendaDaoImpl implements TiendaDao {
+public class TiendaDaoImpl /*implements TiendaDao*/ {
+	
+	/*
 	
 	@PersistenceContext
 	EntityManager em;
@@ -43,4 +45,5 @@ public class TiendaDaoImpl implements TiendaDao {
 			// inserta
 			em.persist(tienda);
 	}
+	*/
 }

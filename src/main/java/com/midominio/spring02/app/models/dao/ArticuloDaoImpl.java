@@ -8,7 +8,9 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 
 @Repository
-public class ArticuloDaoImpl implements ArticuloDao {
+public class ArticuloDaoImpl /*implements ArticuloDao*/ {
+	
+	/*
 
 	@PersistenceContext
 	EntityManager em;
@@ -47,5 +49,6 @@ public class ArticuloDaoImpl implements ArticuloDao {
 			// inserta
 			em.persist(articulo);
 	}
+	*/
 	
 }
